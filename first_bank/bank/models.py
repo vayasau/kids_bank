@@ -5,6 +5,9 @@ class Client(models.Model):
     name = models.CharField(max_length=31)
     balance = models.DecimalField(max_digits=8, decimal_places=2, default=0)
 
+    def __str__(self):
+        return f"{self.name}, {str(self.balance)}"
+
 
 class Money(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
