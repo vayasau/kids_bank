@@ -2,10 +2,13 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.http import HttpResponse
+from .models import Money
 
 
-def start(request):
+def index(request):
     return HttpResponse("Bankas cia!")
 
 def money(request, user_id):
-    return HttpResponse(f"Labas {user_id}, tavo balansas: ")
+    # trans_list = Money.objects.order_by('-trans_date')[:5]
+    # output = ', '.join([t.amount for t in trans_list])
+    return HttpResponse(f"Labas {user_id}, tavo transakcijos: ")

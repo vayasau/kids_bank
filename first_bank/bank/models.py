@@ -1,19 +1,25 @@
 from django.db import models
+from datetime import date
 
 # Create your models here.
 class Client(models.Model):
     name = models.CharField(max_length=31)
-    balance = models.DecimalField(max_digits=8, decimal_places=2, default=0)
 
     def __str__(self):
-        return f"{self.name}, {str(self.balance)}"
+        return self.name
 
 
 class Money(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
-    transaction = models.CharField(max_length=7)
     amount = models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    trans_date = models.DateTimeField('transaction date', auto_now=True)
+    trans_date = models.DateField('transaction date', default=date.today)
 
     def __str__(self):
-        return f"{self.transaction}, {self.amount}, {self.trans_date}"
+        return self.amount, self.trans_date
+
+
+class Interest(models.Model):
+    interest = models.DecimalField(max_digits=3, decimal_places=1, default=0)
+
+    def __str__(self):
+        return self.interest
