@@ -12,4 +12,8 @@ class Client(models.Model):
 class Money(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
     transaction = models.CharField(max_length=7)
+    amount = models.DecimalField(max_digits=8, decimal_places=2, default=0)
     trans_date = models.DateTimeField('transaction date', auto_now=True)
+
+    def __str__(self):
+        return f"{self.transaction}, {self.amount}, {self.trans_date}"

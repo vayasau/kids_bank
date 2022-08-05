@@ -4,5 +4,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 
-def index(request):
-    return HttpResponse ("Bankas cia!")
+def start(request):
+    return HttpResponse("Bankas cia!")
+
+def money(request, user_id):
+    return HttpResponse(f"Labas {user_id}, tavo balansas: ")
